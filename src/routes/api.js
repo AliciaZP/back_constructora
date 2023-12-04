@@ -1,8 +1,8 @@
 const router = require('express').Router();
 
-router.use('/admin', require('./api/admin'));
-router.use('/operario', require('./api/operario'));
-router.use('/obra', require('./api/obra'));
+router.use('/admins', require('./api/admin'));
+router.use('/workers', require('./api/workers'));
+router.use('/constructions', require('./api/constructions'));
 
 
 
