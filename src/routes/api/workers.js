@@ -1,14 +1,15 @@
 const router = require('express').Router();
 
-const WorkerController = require('../../controllers/worker.controller')
+const WorkerController = require('../../controllers/worker.controller');
+const { checkAdmin } = require('../../helpers/middlewares');
 
 
-router.get('/', WorkerController.getAllWorkers );
+router.get('/', WorkerController.getWorkerWithTasks );
 router.get('/:workerId', WorkerController.getWorkerById );
 
-router.post('/new', WorkerController.createNewWorker );
-router.put('/:workerId', WorkerController.updateWorkerById );
-router.delete('/:workerId', WorkerController.deleteWorkerById );
+router.post('/new',checkAdmin, WorkerController.createNewWorker );
+router.put('/:workerId',checkAdmin, WorkerController.updateWorkerById );
+router.delete('/:workerId',checkAdmin ,WorkerController.deleteWorkerById );
 
 
 

@@ -14,12 +14,21 @@ const userLogin = async (req, res) => {
         if( !user ) return res.json({ error: 'Error en usuario y/o contraseña'});
         const samePass = bcrypt.compareSync( password, user[0].password );
         if( !samePass ) return res.json({ error: 'Contraseña incorrecta' });
-        
+        console.log( user[0].role )
         
         res.json({
             success: 'Login correcto', 
-            token:  createToken( user ) 
+            token:  createToken( user[0] ) 
         })
+    } catch (error) {
+        res.json({ error: error.message });
+    }
+};
+
+const getAllUsers = async (req, res) => {
+    try {
+        const [ result ] = UserModel.selectUser();
+        res.json(result[0])
     } catch (error) {
         res.json({ error: error.message });
     }
@@ -27,5 +36,6 @@ const userLogin = async (req, res) => {
 
 
 module.exports = {
-    userLogin
+    userLogin,
+    getAllUsers
 }

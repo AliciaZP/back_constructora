@@ -1,10 +1,27 @@
-const WorkerModel = require('../model/worker.model')
 const bcrypt = require('bcryptjs');
+
+const WorkerModel = require('../model/worker.model')
+const TaskModel = require('../model/task.model')
 
 const getAllWorkers = async ( req, res ) => {
     try {
         const [ result ] = await WorkerModel.selectAll()
         res.json( result )
+    } catch (error) {
+        res.json( { error: error.message } );
+    }
+};
+
+const getWorkerWithTasks = async ( req, res ) => {
+    try {
+        const [ result ] = await WorkerModel.selectAll();
+
+        for(let worker of result){
+            const [ tasks ] = await TaskModel.selectTaskByUser( worker.id );
+            worker.tasks = tasks;
+        }
+
+        res.json( result );
     } catch (error) {
         res.json( { error: error.message } );
     }
@@ -67,5 +84,6 @@ module.exports = {
     createNewWorker,
     updateWorkerById,
     deleteWorkerById,
+    getWorkerWithTasks
     
 }
