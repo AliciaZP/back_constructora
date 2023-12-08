@@ -11,7 +11,7 @@ const createNewConstruction = ({
     name,
     description,
     direction,
-    assigment_date,
+    assignment_date,
     deadline,
     phone,
     construction_type,
@@ -21,7 +21,7 @@ const createNewConstruction = ({
     city,
     image
 }) => {
-    return db.query('insert into constructions (name, description, direction, assignment_date, deadline, phone, construction_type, work_time, lat, lng, city, image) values (?,?,?,?,?,?,?,?,?,?, ?, ?)', [ name, description, direction, assigment_date, deadline, phone, construction_type, work_time, lat, lng, city, image ] );
+    return db.query('insert into constructions (name, description, direction, assignment_date, deadline, phone, construction_type, work_time, lat, lng, city, image) values (?,?,?,?,?,?,?,?,?,?, ?, ?)', [ name, description, direction, assignment_date, deadline, phone, construction_type, work_time, lat, lng, city, image ] );
 };
 
 const updateConstructionById = (
@@ -30,7 +30,7 @@ const updateConstructionById = (
     name,
     description,
     direction,
-    assigment_date,
+    assignment_date,
     deadline,
     phone,
     construction_type,
@@ -40,7 +40,7 @@ const updateConstructionById = (
     city,
     image
     }) => {
-        return db.query('update constructions set name = ?, description = ?, direction = ?, assigment_date = ?, deadline = ?, phone = ?, phone = ?, construction_type = ?, work_time = ?, lat = ?, lng = ?, city = ?, image = ? where id = ?', [ name, description, direction, assigment_date, deadline, phone, construction_type, work_time, lat, lng, city, image, constructionId ])
+        return db.query('update constructions set name = ?, description = ?, direction = ?, assignment_date = ?, deadline = ?, phone = ?, construction_type = ?, work_time = ?, lat = ?, lng = ?, city = ?, image = ? where id = ?', [ name, description, direction, assignment_date, deadline, phone, construction_type, work_time, lat, lng, city, image, constructionId ])
     };
 
 const deleteConstructionById = ( constructionId ) => {

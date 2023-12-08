@@ -68,3 +68,12 @@ Realmente no se si lo vamos a necesitar, ya que cuando hacemos peticion de los t
 
 -GET api/tasks
     -Devuelve todos los tasks 
+
+- GET api/tasks/:taskId
+    -Devuelve el task por id
+- POST api/tasks/new
+    -Crea un task
+- PUT api/tasks/:taskId
+    -Actualiza un task por Id
+- DELETE api/tasks/:taskId
+    -Borra un task por Id

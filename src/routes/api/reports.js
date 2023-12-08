@@ -6,7 +6,7 @@ const { checkAdmin } = require('../../helpers/middlewares');
 
 router.get('/', ReportController.getReportWithImage );
 // router.get('/images', ReportController.getReportWithImage );
-router.get('/:reportId', ReportController.getAllReports );
+router.get('/:reportId', ReportController.getReportById );
 
 router.post('/new', ReportController.createNewReporter );
 router.put('/:reportId', ReportController.updateReporterById );

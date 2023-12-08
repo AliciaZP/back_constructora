@@ -27,8 +27,9 @@ const userLogin = async (req, res) => {
 
 const getAllUsers = async (req, res) => {
     try {
-        const [ result ] = UserModel.selectUser();
-        res.json(result[0])
+        const [ result ] = await UserModel.selectAllUsers();
+        console.log(result);
+        res.json(result)
     } catch (error) {
         res.json({ error: error.message });
     }

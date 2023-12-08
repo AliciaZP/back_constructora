@@ -40,7 +40,9 @@ const getAllWithWorkers = async ( req, res ) => {
 const getConstructionById = async ( req, res ) => {
     try {
         const { constructionId } = req.params;
-        const [ result ] = await ReportModel.selectReportById( reportId );
+
+        const [ result ] = await ConstructionModel.selectConstructionById( constructionId );
+        console.log( constructionId );
         if( result.length === 0 ) return res.json({ error: 'El id de la construccion no existe' });
         res.json( result[0] );
     } catch (error) {

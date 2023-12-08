@@ -29,9 +29,9 @@ const getWorkerWithTasks = async ( req, res ) => {
 
 const getWorkerById = async ( req, res ) => {
     try {
-        const { id } = req.params;
-        console.log( id );
-        const [ result ] = await WorkerModel.selectWorkerById( id );
+        const { workerId } = req.params;
+        
+        const [ result ] = await WorkerModel.selectWorkerById( workerId );
         if( result.length === 0 ) return res.json( { error: 'El id del cliente no existe'});
         res.json( result[0]);
     } catch (error) {
