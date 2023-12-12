@@ -16,7 +16,7 @@ const checkToken = async (req, res, next) => {
         return res.json({ error: error.message})
     }
 
-    const [ result ] = await UserModel.selectUser(payload.user_id);
+    const [ result ] = await UserModel.selectUserById(payload.user_id);
     req.user = result[0];
 
     

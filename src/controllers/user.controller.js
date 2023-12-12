@@ -9,7 +9,7 @@ const userLogin = async (req, res) => {
 
     try {
         const [user] = await UserModel.selectUserByEmail( email );
-        
+        console.log(user);
         
         if( !user ) return res.json({ error: 'Error en usuario y/o contraseña'});
         const samePass = bcrypt.compareSync( password, user[0].password );
