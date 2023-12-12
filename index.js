@@ -4,9 +4,7 @@ const app = require('./src/app');
 
 // Config .env
 require('dotenv').config();
-
 require('./src/config/db')
-
 // Creación server
 const server = http.createServer(app);
 
