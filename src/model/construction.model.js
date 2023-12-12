@@ -7,6 +7,10 @@ const selectConstructionById = ( constructionId ) => {
     return db.query('select * from constructions where id = ?', [ constructionId ])
 };
 
+const selectConstructionWithWorkers = () => {
+    return db.query('select users.* , constructions.* from users join constructions on constrions.id   ')
+};
+
 const createNewConstruction = ({
     name,
     description,

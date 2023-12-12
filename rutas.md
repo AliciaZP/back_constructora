@@ -26,11 +26,11 @@
 ### Constructions
 
 - GET api/constructions/
-    - Devuelve todas las obras cons los workers asociados, con los reportes asociados y las imagenes asociadas a los reportes
+    - Devuelve todas las obras 
 - GET api/constructions/:constructionId
-    - Devuelve la construccion por Id
-<!-- - GET api/construction/reports/:reportId
-    - Devuelve la construccion cons sus reportes -->
+    - Devuelve la construccion por Id con los trabajadores
+- GET api/construction/reports/:constructionId
+    - Devuelve la construccion con sus reportes
 - POST api/construction/new
     -Crea una nueva obra
 - PUT api/construction/:constructionId

@@ -14,26 +14,41 @@ const getAllConstructions = async ( req, res ) => {
 const getAllWithWorkers = async ( req, res ) => {
     try {
         const [ result ] = await ConstructionModel.selectAllConstructions();
-
+        
         for (let construction of result ){
             const [ worker ] = await WorkerModel.selectByConstruction( construction.id );
             construction.workers = worker;
             const [ reports ] = await ReportModel.selectReportbyConstruction( construction.id );
             construction.reports = [];
-
-
+            
+            
             for(let report of reports){
                 const [ images ] = await ReportModel.selectAllImages( report.id );
                 report.images = images;
             }
-
+            
             construction.reports = reports;
         }
-
-
+        
+        
         res.json( result );
     } catch (error) {
         res.json({ error: error.message });
+    }
+};
+const getConstructionWithWorkers = async ( req, res ) => {
+    try {
+        const { constructionId } = req.params;
+        const [ result ] = await ConstructionModel.selectConstructionById( constructionId );
+
+        for(let construction of result ){
+            const [ worker ] = await WorkerModel.selectByConstruction( construction.id );
+            construction.workers = worker;
+        }
+        res.json( result[0] );
+
+    } catch (error) {
+        res.json({ error: error.message })
     }
 };
 
@@ -49,6 +64,22 @@ const getConstructionById = async ( req, res ) => {
         res.json({ error: error.message });
     }
 }
+
+
+const getConstructionWithReports = async ( req, res ) => {
+    try {
+        const { constructionId } = req.params;
+        const [ result ] = await ConstructionModel.selectConstructionById( constructionId );
+
+        for(let construction of result ){
+            const [ report ] = await ReportModel.selectReportbyConstruction( construction.id );
+            construction.reports = report;
+        }
+        res.json( result[0] );
+    } catch (error) {
+        res.json({ error: error.message })
+    }
+};
 
 const createNewConstruction = async ( req, res ) => {
     try {
@@ -90,5 +121,7 @@ module.exports = {
     updateContruction,
     deleteConstructionById,
     createNewConstruction,
-    getAllWithWorkers
+    getAllWithWorkers,
+    getConstructionWithWorkers,
+    getConstructionWithReports
 }
