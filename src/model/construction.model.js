@@ -3,6 +3,22 @@ const selectAllConstructions = () => {
     return db.query('select * from constructions')
 };
 
+const selectConstructionsByCity = ( city ) => {
+    return db.query('select * from constructions where city = ?' , [ city ])
+}
+const selectConstructionsByType = ( type ) => {
+    return db.query('select * from constructions where construction_type = ?' , [ type ])
+}
+const selectConstructionsByName = ( order ) => {
+    return db.query(`select * from constructions order by name ${order}`)
+}
+const selectConstructionsByAssignmentDate = ( aDate ) => {
+    return db.query(`select * from constructions order by assignment_date ${aDate}`)
+}
+const selectConstructionsByDeadline = ( deadline ) => {
+    return db.query(`select * from constructions order by deadline ${deadline}`)
+}
+
 const selectConstructionById = ( constructionId ) => {
     return db.query('select * from constructions where id = ?', [ constructionId ])
 };
@@ -58,5 +74,10 @@ module.exports = {
     selectConstructionById,
     createNewConstruction,
     updateConstructionById,
-    deleteConstructionById
+    deleteConstructionById,
+    selectConstructionsByCity,
+    selectConstructionsByDeadline,
+    selectConstructionsByName,
+    selectConstructionsByType,
+    selectConstructionsByAssignmentDate
 }

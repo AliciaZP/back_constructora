@@ -11,6 +11,52 @@ const getAllConstructions = async ( req, res ) => {
     }
 }
 
+const getConstructionsByCity = async ( req, res ) => {
+    try {
+        const { city } = req.params;
+        const [ result ] = await ConstructionModel.selectConstructionsByCity( city );
+        res.json( result );
+    } catch (error) {
+        res.json({ error: error.message });
+    }
+};
+const getConstructionsByName = async ( req, res ) => {
+    try {
+        const { order } = req.params;
+        const [ result ] = await ConstructionModel.selectConstructionsByName( order );
+        res.json( result );
+    } catch (error) {
+        res.json({ error: error.message });
+    }
+};
+const getConstructionsByADate = async ( req, res ) => {
+    try {
+        const { aDate } = req.params;
+        const [ result ] = await ConstructionModel.selectConstructionsByAssignmentDate( aDate );
+        res.json( result );
+    } catch (error) {
+        res.json({ error: error.message });
+    }
+};
+const getConstructionsByDeadline = async ( req, res ) => {
+    try {
+        const { deadline } = req.params;
+        const [ result ] = await ConstructionModel.selectConstructionsByDeadline( deadline );
+        res.json( result );
+    } catch (error) {
+        res.json({ error: error.message });
+    }
+};
+const getConstructionsByType = async ( req, res ) => {
+    try {
+        const { type } = req.params;
+        const [ result ] = await ConstructionModel.selectConstructionsByType( type );
+        res.json( result );
+    } catch (error) {
+        res.json({ error: error.message });
+    }
+};
+
 const getAllWithWorkers = async ( req, res ) => {
     try {
         const [ result ] = await ConstructionModel.selectAllConstructions();
@@ -123,5 +169,10 @@ module.exports = {
     createNewConstruction,
     getAllWithWorkers,
     getConstructionWithWorkers,
-    getConstructionWithReports
+    getConstructionWithReports,
+    getConstructionsByCity,
+    getConstructionsByADate,
+    getConstructionsByDeadline,
+    getConstructionsByName,
+    getConstructionsByType
 }

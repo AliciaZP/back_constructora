@@ -38,6 +38,16 @@
 - DELETE api/construction/:constructionId
     -Borra una obra por su id
 
+- FILTERS
+    - api/construction/filters/:city
+    - api/construction/name/:order
+    - api/construction/date/:aDate
+    - api/construction/deadline/:deadline
+    - api/construction/type/:type
+
+
+ 
+
 ### Reports
 
 - GET api/reports/

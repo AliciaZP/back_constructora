@@ -6,10 +6,14 @@ const { checkAdmin } = require('../../helpers/middlewares');
 
 router.get('/', WorkerController.getWorkerWithTasks );
 router.get('/:workerId', WorkerController.getWorkerById );
+router.get('/cities/:city', WorkerController.getAllWorkersByCity );
+router.get('/order/:surname', WorkerController.getAllWorkersByOrderSurname );
+router.get('/job/:job', WorkerController.getAllWorkersByJob );
 
-router.post('/new',checkAdmin, WorkerController.createNewWorker );
-router.put('/:workerId',checkAdmin, WorkerController.updateWorkerById );
-router.delete('/:workerId',checkAdmin ,WorkerController.deleteWorkerById );
+
+router.post('/new', WorkerController.createNewWorker );
+router.put('/:workerId', WorkerController.updateWorkerById );
+router.delete('/:workerId' ,WorkerController.deleteWorkerById );
 
 
 

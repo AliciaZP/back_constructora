@@ -9,6 +9,16 @@ const getAllTasks = async (req, res ) => {
     }
 }
 
+const getAllTasksByCWId = async (req, res ) => {
+    try {
+        const { constructionId,userId   } = req.params;
+        const [ result ] = await TaskModel.selectTaskByConstructionId( constructionId, userId );
+        res.json(result); 
+    } catch (error) {
+        res.json({ error: error.message });
+    }
+}
+
 const getTaskById = async (req, res) => {
     try {
         const { taskId } = req.params;
@@ -58,5 +68,6 @@ module.exports = {
     getTaskById,
     createNewTask,
     updateTaskById,
-    deleteTaskById
+    deleteTaskById,
+    getAllTasksByCWId
 }

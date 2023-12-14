@@ -6,6 +6,17 @@ const selectWorkerById = ( id ) => {
     return db.query('SELECT * FROM users where id = ?', [id]);
 };
 
+const selectWorkerBySurname = ( surname ) => {
+    return db.query(`SELECT * FROM users order by surname ${surname}`);
+};
+
+const selectWorkerByCity = ( city ) => {
+    return db.query(`SELECT * FROM users where city = ?`, [city]);
+};
+const selectWorkerByJob = ( job ) => {
+    return db.query(`SELECT * FROM users where job = ?`, [job]);
+};
+
 
 
 
@@ -65,6 +76,9 @@ module.exports = {
     insertNewWorker,
     updateWorkerById,
     deleteWorkerById,
-    selectByConstruction
+    selectByConstruction,
+    selectWorkerBySurname,
+    selectWorkerByCity,
+    selectWorkerByJob
     
 }

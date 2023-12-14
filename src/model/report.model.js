@@ -7,6 +7,14 @@ const selectReportById = ( reportId ) => {
     return db.query('SELECT * FROM reports where id = ?', [ reportId ]);
 };
 
+const selectReportByType = ( type, constructions_id ) => {
+    return db.query('SELECT * FROM reports where type = ? and Constructions_id = ?', [ type, constructions_id ]);
+};
+
+const selectReportByOrderDate = ( date, constructionId ) => {
+    return db.query(`SELECT * FROM reports WHERE Constructions_id = ? ORDER BY date ${date} `, [ constructionId ]);
+};
+
 
 
 const createNewReporter = ({
@@ -56,6 +64,8 @@ const updateReporterById = (
         selectReportById,
         deleteReporterById,
         updateReporterById,
-        selectAllImages
+        selectAllImages,
+        selectReportByType,
+        selectReportByOrderDate
         
     }

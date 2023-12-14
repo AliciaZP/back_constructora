@@ -12,6 +12,35 @@ const getAllWorkers = async ( req, res ) => {
     }
 };
 
+const getAllWorkersByOrderSurname = async ( req, res ) => {
+    try {
+        const { surname } = req.params;
+        const [ result ] = await WorkerModel.selectWorkerBySurname( surname );
+        res.json( result )
+    } catch (error) {
+        res.json( { error: error.message } );
+    }
+};
+const getAllWorkersByCity = async ( req, res ) => {
+    try {
+        const { city } = req.params;
+        const [ result ] = await WorkerModel.selectWorkerByCity(city);
+        res.json( result )
+    } catch (error) {
+        res.json( { error: error.message } );
+    }
+};
+const getAllWorkersByJob = async ( req, res ) => {
+    try {
+        const { job } = req.params;
+        const [ result ] = await WorkerModel.selectWorkerByJob( job );
+        res.json( result )
+    } catch (error) {
+        res.json( { error: error.message } );
+    }
+};
+
+
 const getWorkerWithTasks = async ( req, res ) => {
     try {
         const [ result ] = await WorkerModel.selectAll();
@@ -84,6 +113,9 @@ module.exports = {
     createNewWorker,
     updateWorkerById,
     deleteWorkerById,
-    getWorkerWithTasks
+    getWorkerWithTasks,
+    getAllWorkersByCity,
+    getAllWorkersByJob,
+    getAllWorkersByOrderSurname,
     
 }

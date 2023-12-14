@@ -15,6 +15,29 @@ const getReportWithImage = async ( req, res ) => {
     }
 };
 
+const getReportByType = async ( req, res ) => {
+    try {
+        const { type, constructionId } = req.params;
+        const [ result ] = await ReportModel.selectReportByType( type, constructionId );
+        
+        res.json( result );
+    } catch (error) {
+        res.json({ error: error.message });
+    }
+};
+
+const getReportByOrderDate = async ( req, res ) => {
+    try {
+        const { date , constructionId } = req.params;
+        const [ result ] = await ReportModel.selectReportByOrderDate( date, constructionId );
+        
+        res.json( result );
+    } catch (error) {
+        res.json({ error: error.message });
+    }
+};
+
+
 
 const getReportById = async ( req, res ) => {
     try {
@@ -92,5 +115,7 @@ module.exports = {
     getAllReports,
     getReportById,
     updateReporterById,
-    getReportWithImage
+    getReportWithImage,
+    getReportByType,
+    getReportByOrderDate
 }

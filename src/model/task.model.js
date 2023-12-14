@@ -6,6 +6,10 @@ const selectTaskByUser = ( userId ) => {
     return db.query('select * from tasks where users_id = ?', [ userId ])
 }
 
+const selectTaskByConstructionId = ( constructionId, userId ) => {
+    return db.query('select * from tasks where users_id = ? and Constructions_id = ?', [ constructionId ,userId ])
+};
+
 const selectTaskById = ( taskId ) => {
     return db.query('select * from tasks where id = ?', [ taskId ])
 };
@@ -47,5 +51,6 @@ module.exports = {
     insertNewTask,
     updateTaskbyId,
     deleteTaskById,
-    selectTaskById
+    selectTaskById,
+    selectTaskByConstructionId
 }
