@@ -2,7 +2,8 @@ const TaskModel = require('../model/task.model');
 
 const getAllTasks = async (req, res ) => {
     try {
-        const [ result ] = await TaskModel.selectAllTasks();
+        const { userId } = req.params;
+        const [ result ] = await TaskModel.selectTaskByUser(userId);
         res.json(result); 
     } catch (error) {
         res.json({ error: error.message });
