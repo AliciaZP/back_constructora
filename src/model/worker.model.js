@@ -38,6 +38,8 @@ const insertNewWorker = ({
         'insert into users (name, surname, dni, phone, email, password, role, active, job, city, Constructions_id ,image) values (?,?,?,?,?,?,?,?,?,?,?,?)', [name, surname, dni, phone, email, password, role, active, job, city,Constructions_id, image ]
         );
     };
+
+
 const updateWorkerById = (
     workerId,
     {
@@ -60,6 +62,16 @@ const updateWorkerById = (
         )
 };
 
+const assignConstructionToWorker = (
+    workerId,
+    {   
+        active,
+        Constructions_id
+    }
+)=> {
+    return db.query('update users set active = ?, Constructions_id = ? where id = ?', [ active ,Constructions_id, workerId ]);
+}
+
 
 const deleteWorkerById = ( workerId ) => {
     return db.query( 'delete from users where id = ?', [ workerId ] );
@@ -79,6 +91,7 @@ module.exports = {
     selectByConstruction,
     selectWorkerBySurname,
     selectWorkerByCity,
-    selectWorkerByJob
+    selectWorkerByJob,
+    assignConstructionToWorker
     
 }

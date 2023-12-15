@@ -13,6 +13,7 @@ router.get('/job/:job', WorkerController.getAllWorkersByJob );
 
 router.post('/new', WorkerController.createNewWorker );
 router.put('/:workerId', WorkerController.updateWorkerById );
+router.put('/construction/:workerId', WorkerController.updateWorkerConstruction );
 router.delete('/:workerId' ,WorkerController.deleteWorkerById );
 
 

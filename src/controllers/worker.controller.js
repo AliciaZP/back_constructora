@@ -93,6 +93,18 @@ const updateWorkerById = async ( req, res ) => {
     }
 };
 
+const updateWorkerConstruction = async ( req, res ) => {
+    try {
+        const { workerId } = req.params;
+        const [ result ] = await WorkerModel.assignConstructionToWorker( workerId, req.body );
+        const [ worker ] = await WorkerModel.selectWorkerById( workerId );
+        console.log( 'estoy aqui' );
+        res.json( worker[0] );
+    } catch (error) {
+        console.error( error.message );
+    }
+};
+
 const deleteWorkerById = async ( req, res ) => {
     try {
         const { workerId } = req.params;
@@ -117,5 +129,6 @@ module.exports = {
     getAllWorkersByCity,
     getAllWorkersByJob,
     getAllWorkersByOrderSurname,
+    updateWorkerConstruction
     
 }
