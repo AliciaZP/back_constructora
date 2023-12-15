@@ -3,6 +3,13 @@ const bcrypt = require('bcryptjs');
 const UserModel = require('../model/user.model')
 const { createToken } = require('../helpers/utils');
 
+const getUserLogged = async ( req, res ) => {
+    res.json(req.user)
+    
+}
+
+
+
 const userLogin = async (req, res) => {
     const { email, password } = req.body;
     
@@ -38,5 +45,6 @@ const getAllUsers = async (req, res) => {
 
 module.exports = {
     userLogin,
-    getAllUsers
+    getAllUsers,
+    getUserLogged
 }
