@@ -39,6 +39,17 @@ const getAllWorkersByJob = async ( req, res ) => {
         res.json( { error: error.message } );
     }
 };
+const getAllWorkersByActive = async ( req, res ) => {
+    console.log( 'estoy aqui')
+    try {
+        const { active } = req.params;
+        const [ result ] = await WorkerModel.selectWorkerByActive( active );
+        res.json( result )
+    } catch (error) {
+
+        res.json( { error: error.message, hola: 'algo pasa' } );
+    }
+};
 
 
 const getWorkerWithTasks = async ( req, res ) => {
@@ -129,6 +140,7 @@ module.exports = {
     getAllWorkersByCity,
     getAllWorkersByJob,
     getAllWorkersByOrderSurname,
-    updateWorkerConstruction
+    updateWorkerConstruction,
+    getAllWorkersByActive
     
 }

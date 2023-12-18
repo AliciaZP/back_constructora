@@ -13,9 +13,9 @@ router.get('/date/:aDate', ConstructionControler.getConstructionsByADate );
 router.get('/deadline/:deadline', ConstructionControler.getConstructionsByDeadline );
 router.get('/type/:type', ConstructionControler.getConstructionsByType );
 
-router.post('/new',ConstructionControler.createNewConstruction );
-router.put('/:constructionId', ConstructionControler.updateContruction );
-router.delete('/:constructionId' ,ConstructionControler.deleteConstructionById );
+router.post('/new',checkAdmin,ConstructionControler.createNewConstruction );
+router.put('/:constructionId',checkAdmin, ConstructionControler.updateContruction );
+router.delete('/:constructionId' ,checkAdmin,ConstructionControler.deleteConstructionById );
 
 
 

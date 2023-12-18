@@ -10,6 +10,11 @@ const selectWorkerBySurname = ( surname ) => {
     return db.query(`SELECT * FROM users order by surname ${surname}`);
 };
 
+
+
+const selectWorkerByActive = ( active ) => {
+    return db.query(`SELECT * FROM users where active = ?`, [active]);
+};
 const selectWorkerByCity = ( city ) => {
     return db.query(`SELECT * FROM users where city = ?`, [city]);
 };
@@ -92,6 +97,7 @@ module.exports = {
     selectWorkerBySurname,
     selectWorkerByCity,
     selectWorkerByJob,
-    assignConstructionToWorker
+    assignConstructionToWorker,
+    selectWorkerByActive
     
 }
