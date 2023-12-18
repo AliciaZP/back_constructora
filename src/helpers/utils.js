@@ -1,5 +1,12 @@
+
+
+
 const dayjs = require('dayjs');
 const jwt = require('jsonwebtoken');
+const nodemailer = require('nodemailer');
+const { email } = require('../config/config')
+
+
 
 const createToken = ( user ) => {
     const payload = {
@@ -11,6 +18,27 @@ const createToken = ( user ) => {
 }
 
 
+const transporter = nodemailer.createTransport({
+    service: email.service,
+    auth: {
+        user: email.user,
+        pass: email.pass
+    }
+});
+
+// hucf ygwx tfqj vfrn
+
+
+
+
+// transporter.sendMail(mailOptions, (error, info) => {
+//     if (error) {
+//         return console.error(error);
+//     }
+//     console.log('Correo electrónico enviado:', info.response);
+// });
+
 module.exports = {
-    createToken
+    createToken,
+    transporter
 }

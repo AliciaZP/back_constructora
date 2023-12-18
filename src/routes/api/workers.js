@@ -10,6 +10,7 @@ router.get('/cities/:city', WorkerController.getAllWorkersByCity );
 router.get('/order/:surname', WorkerController.getAllWorkersByOrderSurname );
 router.get('/job/:job', WorkerController.getAllWorkersByJob );
 router.get('/active/:active', WorkerController.getAllWorkersByActive );
+router.get('/mail/:id', WorkerController.getMailByWorker );
 
 
 router.post('/new', WorkerController.createNewWorker );

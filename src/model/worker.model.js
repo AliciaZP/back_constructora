@@ -5,6 +5,9 @@ const selectAll = () => {
 const selectWorkerById = ( id ) => {
     return db.query('SELECT * FROM users where id = ?', [id]);
 };
+const selectMailByWorker = ( id ) => {
+    return db.query('SELECT email FROM users where id = ?', [id]);
+};
 
 const selectWorkerBySurname = ( surname ) => {
     return db.query(`SELECT * FROM users order by surname ${surname}`);
@@ -98,6 +101,7 @@ module.exports = {
     selectWorkerByCity,
     selectWorkerByJob,
     assignConstructionToWorker,
-    selectWorkerByActive
+    selectWorkerByActive,
+    selectMailByWorker
     
 }

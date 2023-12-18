@@ -30,6 +30,15 @@ const getAllWorkersByCity = async ( req, res ) => {
         res.json( { error: error.message } );
     }
 };
+const getMailByWorker = async ( req, res ) => {
+    try {
+        const { id } = req.params;
+        const [ result ] = await WorkerModel.selectMailByWorker( id );
+        res.json( result )
+    } catch (error) {
+        res.json( { error: error.message } );
+    }
+};
 const getAllWorkersByJob = async ( req, res ) => {
     try {
         const { job } = req.params;
@@ -141,6 +150,7 @@ module.exports = {
     getAllWorkersByJob,
     getAllWorkersByOrderSurname,
     updateWorkerConstruction,
-    getAllWorkersByActive
+    getAllWorkersByActive,
+    getMailByWorker
     
 }

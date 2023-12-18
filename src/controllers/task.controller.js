@@ -1,5 +1,7 @@
 const TaskModel = require('../model/task.model');
-
+const WorkerModel = require('../model/worker.model');
+const { transporter } = require('../helpers/utils')
+ 
 const getAllTasks = async (req, res ) => {
     try {
         const { userId } = req.params;
@@ -35,6 +37,21 @@ const createNewTask = async (req, res) => {
     try {
         const [ result ] = await TaskModel.insertNewTask( req.body );
         const [ task ] = await TaskModel.selectTaskById( result.insertId );
+        console.log(task);
+        const [ user ] = await  WorkerModel.selectMailByWorker( task[0].users_id )
+        const mailOptions = {
+            from: email.user,
+            to: user[0].email,
+            subject: 'Tarea',
+            text: 'Nueva tarea asignada, entre en la app para mas detalles'
+        };
+        console.log(user[0]);
+        transporter.sendMail(mailOptions,  (error, info) => {
+            if (error) {
+                return console.error(error);
+            }
+            console.log('Correo electrónico enviado:', info.response);
+        })
         res.json( task[0] );
     } catch (error) {
         res.json({ error: error.message });
