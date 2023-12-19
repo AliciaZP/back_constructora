@@ -56,7 +56,6 @@ const updateWorkerById = (
         dni,
         phone,
         email,
-        password,
         role,
         active,
         job,
@@ -65,8 +64,8 @@ const updateWorkerById = (
         image
     }
     ) => {
-        return db.query( 'update users set name = ?, surname = ?, dni = ?, phone = ?, email = ?, password = ?, role = ?, active = ?, job = ?, city = ?, Constructions_id = ?, image = ?  where id = ?',
-        [ name, surname, dni, phone, email, password, role, active, job, city, Constructions_id, image,  workerId ]
+        return db.query( 'update users set name = ?, surname = ?, dni = ?, phone = ?, email = ?, role = ?, active = ?, job = ?, city = ?, Constructions_id = ?, image = ?  where id = ?',
+        [ name, surname, dni, phone, email,role, active, job, city, Constructions_id, image,  workerId ]
         )
 };
 

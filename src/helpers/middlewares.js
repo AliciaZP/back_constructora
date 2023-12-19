@@ -28,8 +28,9 @@ const checkToken = async (req, res, next) => {
 
 //Middleware que compruebe si el usuario tiene el rol admin (checkAdmin)
 const checkAdmin = (req, res ,next) => {
-    console.log('Estoy aqui')
+    console.log(req.user.role)
     if( req.user.role !== 'admin' ){
+
         return res.json({ error: 'El rol del usuario no es el correcto'})
     }
     console.log('Pase por el if');
