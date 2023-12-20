@@ -1,6 +1,7 @@
 const TaskModel = require('../model/task.model');
 const WorkerModel = require('../model/worker.model');
-const { transporter } = require('../helpers/utils')
+const nodemailer = require('nodemailer');
+const { email } = require('../config/config')
  
 const getAllTasks = async (req, res ) => {
     try {
@@ -39,19 +40,30 @@ const createNewTask = async (req, res) => {
         const [ task ] = await TaskModel.selectTaskById( result.insertId );
         console.log(task);
         const [ user ] = await  WorkerModel.selectMailByWorker( task[0].users_id )
+        const transporter = nodemailer.createTransport({
+            service: email.service,
+            auth: {
+                user: email._user,
+                pass: email._pass
+            }
+        });
         const mailOptions = {
-            from: email.user,
-            to: user[0].email,
-            subject: 'Tarea',
-            text: 'Nueva tarea asignada, entre en la app para mas detalles'
+            from: email._user,
+            to:user[0].email,
+            subject: task[0].title,
+            text: task[0].description
         };
-        console.log(user[0]);
-        transporter.sendMail(mailOptions,  (error, info) => {
+        
+        
+        transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
                 return console.error(error);
             }
             console.log('Correo electrónico enviado:', info.response);
-        })
+        });
+        
+        
+        
         res.json( task[0] );
     } catch (error) {
         res.json({ error: error.message });

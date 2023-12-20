@@ -1,7 +1,7 @@
 module.exports = {
     email: {
         service: 'GMAIL',
-        user: 'guillermovidalsalgueiro@gmail.com',
-        pass: 'hucf ygwx tfqj vfrn' 
+        _user: 'guillermovidalsalgueiro@gmail.com',
+        _pass: 'hucf ygwx tfqj vfrn' 
     }
 };
